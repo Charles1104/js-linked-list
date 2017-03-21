@@ -90,22 +90,23 @@ function linkedListGenerator(){
 
   function insert(value, number){
 
-    var currentNode = get(number - 1);
-    var nextNode = get(number + 1);
-    var nextHead = head.next;
-
+    newNode = node(value);
 
     if (number === 0) {
-    head = node(value);
-    head.next = nextHead;
-    console.log("head");
-    console.log(head.next);
+      newNode.next = head;
+      head = newNode;
     }
 
+    var currentNode = get(number-1);
+    var nextNode = get(number);
+
+    if (currentNode === false) {
+      return false;
+    }
 
     else {
-      currentNode.next = node(value);
-      currentNode.next.next = nextNode;
+      currentNode.next = newNode;
+      newNode.next = nextNode;
     }
 
   }
@@ -127,5 +128,5 @@ animals.add("cat");
 animals.add("dog");
 animals.add("lion");
 
-console.log(animals.insert("elephant",0));
+console.log(animals.getTail());
 
